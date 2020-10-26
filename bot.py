@@ -54,16 +54,21 @@ def callback_inline(call):
         if call.message:
             if call.data == 'good':
                 bot.send_message(call.message.chat.id, 'Вот і чудово 😊')
+                # show alert
+                bot.answer_callback_query(callback_query_id=call.id, show_alert=True,
+                                          text="Це просто класно чувак так і тримай =>  цикне ОК)")
             elif call.data == 'bad':
                 bot.send_message(call.message.chat.id, 'Буває не кисне 😢')
+                bot.answer_callback_query(callback_query_id=call.id, show_alert=True,
+                                          text="Не кисне ти людина то вже класно__) =>  цикне ОК)")
 
             # remove inline buttons
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="😊 Як життя?",
                                   reply_markup=None)
 
-            # show alert
-            bot.answer_callback_query(callback_query_id=call.id, show_alert=True,
-                                      text="Це тестове повідомленя просто цикне ОК)")
+            # # show alert
+            # bot.answer_callback_query(callback_query_id=call.id, show_alert=True,
+            #                           text="Це тестове повідомленя просто цикне ОК)")
 
     except Exception as e:
         print(repr(e))
